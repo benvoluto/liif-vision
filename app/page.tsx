@@ -1,16 +1,15 @@
 "use client";
 
-import { useState, type ComponentType } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ChevronDown } from "lucide-react";
 import ReportProblemOutlined from "@mui/icons-material/ReportProblemOutlined";
 import RouteOutlined from "@mui/icons-material/RouteOutlined";
 import Click from "@mui/icons-material/AdsClickOutlined";
-import PsychologyOutlined from "@mui/icons-material/PsychologyOutlined";
 import { cn } from "@/lib/utils";
 
-const sections: Section[] = [
+const sections = [
   {
     id: "broken",
     title: "The Big Opportunity",
