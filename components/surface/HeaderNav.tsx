@@ -30,13 +30,17 @@ export function HeaderNav({
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 pt-4 lg:pt-5 pb-3">
         {/* Top row: LIIF seal + persona block + nav + wordmark */}
         <div className="flex items-start gap-4 lg:gap-6 flex-wrap">
-          {/* Left mark — LIIF seal */}
+          {/* Left mark — LIIF logo */}
           <div className="flex-shrink-0">
-            <div className="w-16 h-16 flex items-center justify-center">
-              <span className="scale-[1.45] origin-center">
-                {/* seal scaled up to fill the slot */}
-                <LiifSealLarge />
-              </span>
+            <div className="relative w-16 h-16 flex items-center justify-center">
+              <Image
+                src="/liif.png"
+                alt="LIIF"
+                fill
+                priority
+                className="object-contain"
+                sizes="64px"
+              />
             </div>
           </div>
 
@@ -108,22 +112,5 @@ export function HeaderNav({
         </div>
       </div>
     </header>
-  )
-}
-
-// local helper: the seal at the header size
-function LiifSealLarge() {
-  return (
-    <span
-      className="inline-flex items-center justify-center rounded-xl"
-      style={{ width: 44, height: 44, background: 'linear-gradient(135deg, #0E7C7B 0%, #1F9E8F 100%)' }}
-      aria-hidden
-    >
-      <svg width={26} height={26} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M3 11 L12 4 L21 11" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-        <path d="M5.5 10.5 V19 H18.5 V10.5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-        <circle cx="12" cy="14.5" r="1.7" fill="white" />
-      </svg>
-    </span>
   )
 }

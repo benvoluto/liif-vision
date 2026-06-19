@@ -2,10 +2,10 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowLeft, Check, Home } from 'lucide-react'
+import { ArrowLeft, Check } from 'lucide-react'
 import { cn } from '@/lib/utils'
-import { LiifSeal } from '@/components/surface/LiifMark'
 import type { FlowStepDef } from '@/lib/flows/types'
 
 export interface FlowTabDef {
@@ -54,7 +54,13 @@ export function FlowShell({ title, persona, backHref, tabs }: FlowShellProps) {
                    pl-2.5 pr-3 py-2.5 rounded-r-lg shadow-lg
                    hover:pl-3.5 hover:pr-4 transition-all"
       >
-        <Home size={14} />
+        <Image
+          src="/liif.png"
+          alt="LIIF"
+          width={742}
+          height={529}
+          className="h-4 w-auto"
+        />
         <span className="text-[11px] font-semibold tracking-wide uppercase
                          max-w-0 overflow-hidden whitespace-nowrap
                          group-hover:max-w-[80px] transition-all">
@@ -64,7 +70,9 @@ export function FlowShell({ title, persona, backHref, tabs }: FlowShellProps) {
 
       {/* Top bar */}
       <header className="bg-surface border-b border-border px-4 sm:px-6 lg:px-8 py-3 flex items-center gap-3 sm:gap-4 flex-wrap">
-        <LiifSeal size={44} />
+        <span className="relative inline-flex w-11 h-11 flex-shrink-0">
+          <Image src="/liif.png" alt="LIIF" fill priority className="object-contain" sizes="44px" />
+        </span>
         <Link
           href={backHref}
           className="flex items-center gap-1.5 text-sm text-ink-muted hover:text-ink transition-colors"
