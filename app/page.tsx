@@ -204,9 +204,6 @@ export default function LandingPage() {
           />
           <div className="flex items-end justify-between gap-4 flex-wrap">
             <div>
-              <p className="text-[10px] font-bold uppercase tracking-widest text-ink-muted mb-2">
-                Vision · Low Income Investment Fund
-              </p>
               <h1 className="text-4xl sm:text-5xl text-ink tracking-tight font-semibold leading-[1.05]">
                 A Vision for a LIIF &ldquo;Grant Operating System&rdquo;
               </h1>
