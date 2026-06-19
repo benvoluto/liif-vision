@@ -211,21 +211,13 @@ export default function LandingPage() {
                 A Vision for a LIIF &ldquo;Grant Operating System&rdquo;
               </h1>
               <p className="text-sm text-ink-muted mt-3 max-w-xl">
-                An agent-enabled way to administer early-childhood-education facilities grants — and get money to providers faster, without giving up a single control.
+                An agent-enabled way to administer early-childhood-education facilities grants: get money to providers faster with stronger controls, and replace current costly software and services with a single, self-configuring platform.
               </p>
             </div>
             <p className="text-sm text-ink-muted">Ben Clemens · June 2026</p>
           </div>
         </div>
       </header>
-
-      {/* Intro */}
-      <div className="max-w-3xl mx-auto px-4 sm:px-8 pt-10 pb-4">
-        <p className="text-sm text-ink-muted max-w-2xl">
-          A proposal in three parts to envision how an agentic framework could replace LIIF&rsquo;s current mix of software
-          and services. The interactive flows are in the third section.
-        </p>
-      </div>
 
       {/* Accordion */}
       <div className="max-w-3xl mx-auto px-4 sm:px-8 pb-20">
