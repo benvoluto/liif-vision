@@ -1,0 +1,98 @@
+@import "tailwindcss";
+
+@theme {
+  /* Background & surface */
+  --color-bg: #FAFAF7;
+  --color-surface: #FFFFFF;
+
+  /* Text */
+  --color-ink: #1A1A1A;
+  --color-ink-muted: #6B6B6B;
+
+  /* Borders */
+  --color-border: #E6E4DE;
+
+  /* Accents */
+  --color-employee-accent: #2E5BFF;
+  --color-manager-accent: #1F7A4C;
+
+  /* Priority badges */
+  --color-priority-high: #E26A2C;
+  --color-priority-process: #2E5BFF;
+  --color-priority-opportunity: #1F9E8F;
+  --color-priority-storm: #D4A017;
+
+  /* Audit trail */
+  --color-audit: #4A5568;
+
+  /* Fonts — Helvetica Neue stack, medium default */
+  --font-display: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  --font-sans: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  --font-mono: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+}
+
+html, body {
+  font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  font-weight: 500;
+}
+
+/* Medium becomes the baseline; other weights shift accordingly */
+.font-light { font-weight: 400 !important; }
+.font-normal { font-weight: 500 !important; }
+.font-medium { font-weight: 500 !important; }
+.font-semibold { font-weight: 600 !important; }
+.font-bold { font-weight: 700 !important; }
+
+body {
+  background-color: #FAFAF7;
+  color: #1A1A1A;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Hover-tip on highlighted phrases */
+@layer utilities {
+  span.tip,
+  [data-tip] {
+    position: relative;
+    font-weight: 700;
+    border-bottom: 1px dotted rgba(26, 26, 26, 0.45);
+    cursor: help;
+    display: inline;
+  }
+  span.tip::after,
+  [data-tip]::after {
+    content: attr(data-tip);
+    position: absolute;
+    left: 0;
+    top: calc(100% + 6px);
+    width: max-content;
+    max-width: 360px;
+    background: #1A1A1A;
+    color: #ffffff;
+    padding: 10px 12px;
+    border-radius: 8px;
+    font-size: 12px;
+    line-height: 1.5;
+    font-weight: 500;
+    white-space: normal;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-2px);
+    transition: opacity 140ms ease, transform 140ms ease;
+    z-index: 50;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.22);
+  }
+  span.tip:hover::after,
+  span.tip:focus-visible::after,
+  [data-tip]:hover::after,
+  [data-tip]:focus-visible::after {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #E6E4DE; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #C8C5BC; }
