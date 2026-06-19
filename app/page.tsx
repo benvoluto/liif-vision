@@ -222,7 +222,7 @@ export default function LandingPage() {
       {/* Intro */}
       <div className="max-w-3xl mx-auto px-4 sm:px-8 pt-10 pb-4">
         <p className="text-sm text-ink-muted max-w-2xl">
-          A proposal in three parts to envision how an agentic framework replace LIIF&rsquo;s current mix of software
+          A proposal in three parts to envision how an agentic framework could replace LIIF&rsquo;s current mix of software
           and services. The interactive flows are in the third section.
         </p>
       </div>
