@@ -3,6 +3,7 @@ import { HomeShell } from '@/components/surface/HomeShell'
 import { BriefingCard } from '@/components/surface/BriefingCard'
 import { maria } from '@/lib/ontology/liif'
 import { mariaCards, mariaQuickActions, mariaInProgress } from '@/lib/agent/suggestions'
+import { sortByPriority } from '@/lib/agent/priority'
 
 const metaLines = [
   'Family Child Care · San Francisco, CA',
@@ -39,12 +40,11 @@ export default function MariaPage() {
           <FilterTab label="2 Opportunities" />
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-1 mb-8">
-        {mariaCards.map((card) => (
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-8">
+        {sortByPriority(mariaCards).map((card) => (
           <BriefingCard
             key={card.id}
             card={card}
-            tint="green"
             actionAccent="green"
             flowCue={card.ctaHref === '/flows/grant-application' ? 'Start flow' : undefined}
           />

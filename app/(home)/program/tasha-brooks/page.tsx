@@ -3,6 +3,7 @@ import { HomeShell } from '@/components/surface/HomeShell'
 import { BriefingCard } from '@/components/surface/BriefingCard'
 import { tasha } from '@/lib/ontology/liif'
 import { tashaCards, tashaQuickActions, tashaInProgress } from '@/lib/agent/suggestions'
+import { sortByPriority } from '@/lib/agent/priority'
 
 const metaLines = [
   'CCFF FY26 portfolio · 38 active grantees',
@@ -42,12 +43,11 @@ export default function TashaPage() {
           <FilterTab label="1 Opportunity" />
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-1 mb-8">
-        {tashaCards.map((card) => (
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-8">
+        {sortByPriority(tashaCards).map((card) => (
           <BriefingCard
             key={card.id}
             card={card}
-            tint="blue"
             actionAccent="blue"
             flowCue={
               card.ctaHref === '/flows/payment-readiness'

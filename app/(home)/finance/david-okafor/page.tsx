@@ -3,6 +3,7 @@ import { HomeShell } from '@/components/surface/HomeShell'
 import { BriefingCard } from '@/components/surface/BriefingCard'
 import { david } from '@/lib/ontology/liif'
 import { davidCards, davidQuickActions, davidInProgress } from '@/lib/agent/suggestions'
+import { sortByPriority } from '@/lib/agent/priority'
 
 const metaLines = [
   'Release authority · LIIF Delegation of Authority',
@@ -33,12 +34,11 @@ export default function DavidPage() {
           <FilterTab label="2 Opportunities" />
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-1 mb-8">
-        {davidCards.map((card) => (
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-8">
+        {sortByPriority(davidCards).map((card) => (
           <BriefingCard
             key={card.id}
             card={card}
-            tint="amber"
             actionAccent="orange"
             flowCue={card.ctaHref === '/flows/payment-release' ? 'Clear queue' : undefined}
           />

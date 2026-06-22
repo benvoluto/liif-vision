@@ -12,13 +12,24 @@ import { cn } from '@/lib/utils'
 import { ExplainDrawer } from '@/components/trust/ExplainDrawer'
 import type { BriefingCardDef, PriorityKind } from '@/lib/ontology/types'
 
-export type CardTint = 'blue' | 'green' | 'amber' | 'rose'
+export type CardTint = 'blue' | 'green' | 'amber' | 'rose' | 'peach' | 'gray'
 
 const tintStyles: Record<CardTint, string> = {
   blue: 'bg-[#E8F0FB] border-[#CFDEF3]',
   green: 'bg-[#E8F2EB] border-[#CFE1D5]',
   amber: 'bg-[#FBF1DC] border-[#EEDFB8]',
   rose: 'bg-[#FBE9E1] border-[#F2D3C2]',
+  peach: 'bg-[#FBE9E1] border-[#F2D3C2]',
+  gray: 'bg-[#F3F2EF] border-[#E4E2DC]',
+}
+
+// Background tint by importance: delays/deadlines read warm (peach), in-progress
+// work reads cool (blue), opportunities read green, everything else stays neutral.
+const priorityTint: Record<PriorityKind, CardTint> = {
+  high: 'peach',
+  storm: 'peach',
+  process: 'blue',
+  opportunity: 'green',
 }
 
 const priorityStyles: Record<
@@ -41,6 +52,7 @@ const accentClass: Record<ActionAccent, string> = {
 
 interface BriefingCardProps {
   card: BriefingCardDef
+  /** Optional override; by default the tint is derived from card.priority. */
   tint?: CardTint
   actionAccent?: ActionAccent
   flowCue?: string
@@ -49,7 +61,7 @@ interface BriefingCardProps {
 
 export function BriefingCard({
   card,
-  tint = 'blue',
+  tint,
   actionAccent = 'blue',
   flowCue,
   className,
@@ -57,13 +69,14 @@ export function BriefingCard({
   const [explainOpen, setExplainOpen] = useState(false)
   const p = priorityStyles[card.priority]
   const accent = accentClass[actionAccent]
+  const resolvedTint = tint ?? priorityTint[card.priority] ?? 'gray'
 
   return (
     <>
       <div
         className={cn(
           'rounded-3xl p-5 flex flex-col min-h-[200px]',
-          tintStyles[tint],
+          tintStyles[resolvedTint],
           className,
         )}
       >
@@ -152,7 +165,6 @@ function ActionLink({
   const classes = cn(
     'relative inline-flex items-center gap-1.5 text-xs font-semibold hover:underline underline-offset-2 transition-colors',
     accent,
-    cue && 'rounded-md px-1.5 py-0.5 -mx-1.5 ring-2 ring-current ring-offset-2 ring-offset-[var(--cue-offset,transparent)]',
   )
   const inner = (
     <>
@@ -161,7 +173,7 @@ function ActionLink({
       {cue && (
         <span
           className={cn(
-            'absolute left-1/2 -translate-x-1/2 -top-7 whitespace-nowrap',
+            'absolute left-1/2 -translate-x-1/2 -top-5 whitespace-nowrap',
             'text-[10px] font-bold tracking-wide uppercase text-white bg-ink',
             'px-2 py-0.5 rounded-md shadow-md',
           )}
