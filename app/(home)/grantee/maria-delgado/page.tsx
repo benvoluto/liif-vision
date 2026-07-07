@@ -27,6 +27,7 @@ export default function MariaPage() {
       quickActions={mariaQuickActions}
       inProgress={mariaInProgress}
       accentColor="#0E7C7B"
+      hideSidebar
     >
       {/* Suggested Actions */}
       <div className="flex items-center gap-4 mb-5">

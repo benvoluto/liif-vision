@@ -11,6 +11,8 @@ interface HomeShellProps {
   quickActions: QuickAction[]
   inProgress: InProgressItem[]
   accentColor?: string
+  /** Hide the right-hand sidebar and let the main content span full width. */
+  hideSidebar?: boolean
   children: React.ReactNode
 }
 
@@ -21,6 +23,7 @@ export function HomeShell({
   quickActions,
   inProgress,
   accentColor,
+  hideSidebar = false,
   children,
 }: HomeShellProps) {
   return (
@@ -48,11 +51,13 @@ export function HomeShell({
         <main className="flex-1 min-w-0">{children}</main>
 
         {/* Sidebar */}
-        <Sidebar
-          quickActions={quickActions}
-          inProgress={inProgress}
-          accentColor={accentColor}
-        />
+        {!hideSidebar && (
+          <Sidebar
+            quickActions={quickActions}
+            inProgress={inProgress}
+            accentColor={accentColor}
+          />
+        )}
       </div>
     </div>
   )
