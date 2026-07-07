@@ -1,9 +1,7 @@
 'use client'
 
 import { motion, AnimatePresence } from 'framer-motion'
-import { X } from 'lucide-react'
-import CheckOutlined from '@mui/icons-material/CheckOutlined'
-import CloseOutlined from '@mui/icons-material/CloseOutlined'
+import { XIcon as X, CheckIcon as Check } from '@phosphor-icons/react/dist/ssr'
 import { ConfidenceChip } from './ConfidenceChip'
 import type { ExplainContent, OntologyRef } from '@/lib/ontology/types'
 
@@ -71,9 +69,9 @@ export function ExplainDrawer({ open, onClose, title, content }: ExplainDrawerPr
               </div>
               <button
                 onClick={onClose}
-                className="ml-4 p-1.5 rounded-md hover:bg-gray-100 transition-colors text-ink-muted"
+                className="ml-4 p-1.5 rounded-md hover:bg-muted transition-colors text-ink-muted"
               >
-                <X size={18} />
+                <X size={20} weight="bold" />
               </button>
             </div>
 
@@ -119,11 +117,11 @@ export function ExplainDrawer({ open, onClose, title, content }: ExplainDrawerPr
                     </h3>
                     <div className="space-y-2">
                       <div className="flex gap-2.5 text-sm">
-                        <CheckOutlined className="text-green-600 mt-0.5 flex-shrink-0" sx={{ fontSize: 16 }} />
+                        <Check className="text-green-600 mt-0.5 flex-shrink-0" size={19} weight="bold" />
                         <p className="text-ink leading-relaxed">{content.willDo}</p>
                       </div>
                       <div className="flex gap-2.5 text-sm">
-                        <CloseOutlined className="text-red-500 mt-0.5 flex-shrink-0" sx={{ fontSize: 16 }} />
+                        <X className="text-red-500 mt-0.5 flex-shrink-0" size={19} weight="bold" />
                         <p className="text-ink leading-relaxed">{content.wontDo}</p>
                       </div>
                     </div>
@@ -131,7 +129,7 @@ export function ExplainDrawer({ open, onClose, title, content }: ExplainDrawerPr
                 </>
               ) : (
                 // Canned response for AskAnything
-                <div className="rounded-xl bg-gray-50 border border-border p-5">
+                <div className="rounded-xl bg-muted border border-border p-5">
                   <p className="text-sm text-ink-muted leading-relaxed italic">
                     I don&apos;t actually run in this prototype — try one of the suggested actions
                     on the left to see the real Explain drawer.

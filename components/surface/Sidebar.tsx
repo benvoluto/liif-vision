@@ -1,5 +1,4 @@
-import CheckOutlined from '@mui/icons-material/CheckOutlined'
-import ArrowForwardOutlined from '@mui/icons-material/ArrowForwardOutlined'
+import { CheckIcon as Check, ArrowRightIcon as ArrowRight } from '@phosphor-icons/react/dist/ssr'
 import { AskAnything } from './AskAnything'
 import type { QuickAction, InProgressItem } from '@/lib/ontology/types'
 
@@ -19,8 +18,8 @@ export function Sidebar({ quickActions, inProgress }: SidebarProps) {
             key={qa.id}
             className="flex items-center gap-3 text-left group"
           >
-            <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-employee-accent text-white flex-shrink-0 group-hover:scale-105 transition-transform">
-              <ArrowForwardOutlined sx={{ fontSize: 16 }} />
+            <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-employee-accent text-white flex-shrink-0 group-hover:scale-105 transition-transform">
+              <ArrowRight size={18} weight="bold" />
             </span>
             <span className="text-[14px] font-bold text-employee-accent truncate group-hover:underline underline-offset-2">
               {qa.label}
@@ -37,8 +36,8 @@ export function Sidebar({ quickActions, inProgress }: SidebarProps) {
       {/* In Progress */}
       <div>
         <h3 className="text-[13px] font-semibold text-ink mb-4 flex items-center gap-2">
-          <span className="inline-flex items-center justify-center w-4 h-4 rounded-full bg-priority-opportunity/15 text-priority-opportunity">
-            <CheckOutlined sx={{ fontSize: 11 }} />
+          <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-priority-opportunity/15 text-priority-opportunity">
+            <Check size={16} weight="bold" />
           </span>
           <span className="text-priority-opportunity">In Progress</span>
         </h3>

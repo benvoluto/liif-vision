@@ -1,4 +1,4 @@
-import FlagOutlined from '@mui/icons-material/FlagOutlined'
+import { FlagIcon as Flag } from '@phosphor-icons/react/dist/ssr'
 import { HomeShell } from '@/components/surface/HomeShell'
 import { BriefingCard } from '@/components/surface/BriefingCard'
 import { tasha } from '@/lib/ontology/liif'
@@ -29,7 +29,7 @@ export default function TashaPage() {
       badges={badges}
       quickActions={tashaQuickActions}
       inProgress={tashaInProgress}
-      accentColor="#2E5BFF"
+      accentColor="#0A6EDB"
     >
       {/* Briefing */}
       <div className="flex items-center gap-4 mb-5">
@@ -43,7 +43,7 @@ export default function TashaPage() {
           <FilterTab label="1 Opportunity" />
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
         {sortByPriority(tashaCards).map((card) => (
           <BriefingCard
             key={card.id}
@@ -62,14 +62,14 @@ export default function TashaPage() {
 
       {/* Pipeline */}
       <div className="flex items-center gap-3 mb-4">
-        <FlagOutlined className="text-priority-high" sx={{ fontSize: 18 }} />
+        <Flag className="text-priority-high" size={22} weight="fill" />
         <h2 className="text-[17px] font-semibold text-ink">Portfolio</h2>
         <span className="inline-flex items-center text-[11px] font-semibold text-priority-high bg-white border border-[#F2D3C2] rounded-full px-2.5 py-0.5">
           4 need action
         </span>
         <span className="text-[12px] text-ink-muted">38 active grantees</span>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-1 gap-y-1">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {pipeline.map((p) => (
           <div key={p.name} className="bg-[#E8F0FB] rounded-3xl px-4 py-3 flex items-center gap-3">
             <div className="flex-1 min-w-0">

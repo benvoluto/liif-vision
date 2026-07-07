@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { CheckCircle, ChevronRight } from 'lucide-react'
+import { CheckCircleIcon as CheckCircle, CaretRightIcon as CaretRight } from '@phosphor-icons/react/dist/ssr'
 import { cn } from '@/lib/utils'
 import { ConfidenceChip } from '@/components/trust/ConfidenceChip'
 import { ScopeBadge } from './ScopeBadge'
@@ -37,7 +37,7 @@ export function ActionCard({ action, onExecute, className }: ActionCardProps) {
             <h4 className="font-semibold text-[15px] text-ink">{action.label}</h4>
           </div>
           {state === 'done' ? (
-            <CheckCircle size={20} className="text-green-600 flex-shrink-0 mt-0.5" />
+            <CheckCircle size={24} weight="fill" className="text-green-600 flex-shrink-0 mt-0.5" />
           ) : (
             <ConfidenceChip
               confidence={action.confidence}
@@ -67,7 +67,7 @@ export function ActionCard({ action, onExecute, className }: ActionCardProps) {
             {action.requiredApprovals.map((a) => (
               <span
                 key={a}
-                className="text-[11px] bg-gray-100 text-ink-muted rounded-full px-2 py-0.5"
+                className="text-[11px] bg-muted text-ink-muted rounded-full px-2 py-0.5"
               >
                 {a}
               </span>
@@ -96,19 +96,19 @@ export function ActionCard({ action, onExecute, className }: ActionCardProps) {
             className={cn(
               'w-full flex items-center justify-center gap-2 py-2.5 rounded-lg text-sm font-semibold transition-all',
               state === 'idle'
-                ? 'bg-gray-100 text-ink hover:bg-gray-200'
+                ? 'bg-muted text-ink hover:bg-border'
                 : 'bg-employee-accent text-surface hover:bg-employee-accent/90'
             )}
           >
             {state === 'idle' ? (
-              <>Preview action <ChevronRight size={14} /></>
+              <>Preview action <CaretRight size={16} weight="bold" /></>
             ) : (
               <>Confirm & apply</>
             )}
           </button>
         ) : (
           <div className="flex items-center gap-2 text-sm text-green-700 font-semibold">
-            <CheckCircle size={16} />
+            <CheckCircle size={19} weight="fill" />
             Applied — audit entry created
           </div>
         )}

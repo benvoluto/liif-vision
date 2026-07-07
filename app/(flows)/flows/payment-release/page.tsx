@@ -1,8 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import CheckOutlined from '@mui/icons-material/CheckOutlined'
-import CloseOutlined from '@mui/icons-material/CloseOutlined'
+import { CheckIcon as Check, XIcon as X } from '@phosphor-icons/react/dist/ssr'
 import { FlowShell } from '@/components/flow/FlowShell'
 import { AgentMessage } from '@/components/flow/AgentMessage'
 import { ScopeBadge } from '@/components/flow/ScopeBadge'
@@ -196,7 +195,7 @@ export default function PaymentReleasePage() {
                             'Median age of this cohort: 51 days',
                           ].map((item) => (
                             <li key={item} className="flex gap-2">
-                              <CloseOutlined className="text-red-400 flex-shrink-0" sx={{ fontSize: 16 }} />
+                              <X className="text-red-400 flex-shrink-0 mt-0.5" size={18} weight="bold" />
                               {item}
                             </li>
                           ))}
@@ -219,7 +218,7 @@ export default function PaymentReleasePage() {
                             'This cohort: released the same week',
                           ].map((item) => (
                             <li key={item} className="flex gap-2">
-                              <CheckOutlined className="text-green-600 flex-shrink-0" sx={{ fontSize: 16 }} />
+                              <Check className="text-green-600 flex-shrink-0 mt-0.5" size={18} weight="bold" />
                               {item}
                             </li>
                           ))}

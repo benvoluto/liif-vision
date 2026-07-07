@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import CheckCircleOutlined from '@mui/icons-material/CheckCircleOutlined'
+import { CheckCircleIcon as CheckCircle } from '@phosphor-icons/react/dist/ssr'
 import { FlowShell } from '@/components/flow/FlowShell'
 import { AgentMessage } from '@/components/flow/AgentMessage'
 import { ScopeBadge } from '@/components/flow/ScopeBadge'
@@ -82,7 +82,7 @@ export default function PaymentReadinessPage() {
                             {complianceItems.map((c) => (
                               <tr key={c.label} className="hover:bg-bg transition-colors">
                                 <td className="px-4 py-2.5 text-ink flex items-center gap-2">
-                                  <CheckCircleOutlined className="text-green-600" sx={{ fontSize: 16 }} />
+                                  <CheckCircle className="text-green-600 flex-shrink-0" size={19} weight="fill" />
                                   {c.label}
                                 </td>
                                 <td className="px-4 py-2.5 text-ink-muted">{c.source}</td>

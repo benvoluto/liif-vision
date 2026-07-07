@@ -1,4 +1,4 @@
-import FlagOutlined from '@mui/icons-material/FlagOutlined'
+import { FlagIcon as Flag } from '@phosphor-icons/react/dist/ssr'
 import { HomeShell } from '@/components/surface/HomeShell'
 import { BriefingCard } from '@/components/surface/BriefingCard'
 import { david } from '@/lib/ontology/liif'
@@ -34,7 +34,7 @@ export default function DavidPage() {
           <FilterTab label="2 Opportunities" />
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
         {sortByPriority(davidCards).map((card) => (
           <BriefingCard
             key={card.id}
@@ -47,13 +47,13 @@ export default function DavidPage() {
 
       {/* Disbursement at a glance */}
       <div className="flex items-center gap-3 mb-4">
-        <FlagOutlined className="text-priority-high" sx={{ fontSize: 18 }} />
+        <Flag className="text-priority-high" size={22} weight="fill" />
         <h2 className="text-[17px] font-semibold text-ink">Disbursement at a glance</h2>
         <span className="inline-flex items-center text-[11px] font-semibold text-priority-high bg-white border border-[#F2D3C2] rounded-full px-2.5 py-0.5">
           Controls protected
         </span>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-1">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="bg-[#FBF1DC] rounded-3xl p-5">
           <p className="text-[12px] font-bold uppercase tracking-wider text-ink-muted mb-2">
             What the agent will never do

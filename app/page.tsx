@@ -3,17 +3,20 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ChevronDown } from "lucide-react";
-import ReportProblemOutlined from "@mui/icons-material/ReportProblemOutlined";
-import RouteOutlined from "@mui/icons-material/RouteOutlined";
-import Click from "@mui/icons-material/AdsClickOutlined";
+import {
+  CaretDownIcon as CaretDown,
+  WarningIcon as Warning,
+  PathIcon as Path,
+  CursorClickIcon as CursorClick,
+  ArrowRightIcon,
+} from "@phosphor-icons/react/dist/ssr";
 import { cn } from "@/lib/utils";
 
 const sections = [
   {
     id: "broken",
     title: "The Big Opportunity",
-    Icon: ReportProblemOutlined,
+    Icon: Warning,
     color: "#E26A2C",
     body: `LIIF administers roughly <span class="tip" tabindex="0" data-tip="From the FY26 ECE monthly report: 22 active funding sources, $478M in total active value, spanning CCFF (San Francisco), SHINE (Harris County), Alameda, Sonoma, CDSS and more.">$478M in active early-childhood-education funding</span> across a dozen-plus programs. The mission is sound and the demand is real. LIIF's single biggest lever on how many children are served is operational: <strong>fast, compliant, risk-free operations</strong>. Today, grant administration runs on a stack of <span class="tip" tabindex="0" data-tip="Submittable (intake & review routing), Salesforce (records & compliance), RightSignature (e-signature), Payoneer (disbursement), MIP/Sage (fund accounting), Concur (legacy invoicing), Asana (pipeline).">seven point tools</span> — Submittable, Salesforce, RightSignature, Payoneer, MIP, Concur, Asana — stitched together by people re-keying between them.
 
@@ -32,7 +35,7 @@ The cost shows up in the numbers: about <span class="tip" tabindex="0" data-tip=
   {
     id: "strategy",
     title: "A New Strategy",
-    Icon: RouteOutlined,
+    Icon: Path,
     color: "#1F9E8F",
     body: `Replace the point-tool stack and ad-hoc process with one thing: an <span class="tip" tabindex="0" data-tip="The same LLM-assisted approach that captures LIIF's rules at setup powers the agent that reasons against them at runtime — so the platform is self-configuring and self-adjusting instead of re-integrated by vendors each time.">agentic grant platform</span>, where processes are mediated and collaboratively adjusted by agents and humans. A typed, linked graph — Funder → Program → Application → Provider → Agreement → Award → Payment Request → Disbursement → Compliance Item → Report — becomes the system of record. Every surface and every workflow is a <em>view</em> over that one graph, not a separate module with its own model. Rather than a cycle of configuration and integration with costly vendors that breaks or gets outgrown, the platform is self-configuring and self-adjusting.
 
@@ -62,8 +65,8 @@ Instead of stitching seven tools together by hand and rebuilding each program fr
   {
     id: "life",
     title: "Designs & Flows",
-    Icon: Click,
-    color: "#2E5BFF",
+    Icon: CursorClick,
+    color: "#0A6EDB",
     body: `I built three surfaces and three flows (below, click to enter), grounded in CCFF and a real, recurring failure mode: a payment that stalls for a month or more because of routing fragility and duplicate review.
 
 <strong>The flows show the experience from all three sides of a grant</strong> — the grantee getting to a compliant application and getting paid, the program officer handing Finance a package it can rely on, and Finance clearing an aged-payment queue with every control intact. The third flow is the money disbursement: it fixes the exact stall the research surfaced, and ends on a before-and-after that any CFO would recognize.
@@ -91,7 +94,7 @@ const personas = [
     flow: "Payment Readiness & Monitoring",
     href: "/program/tasha-brooks",
     photo: "/avatars/tasha.svg",
-    accent: "bg-[#2E5BFF]",
+    accent: "bg-employee-accent",
     description: "Hands Finance a package it can rely on — ending the duplicate review",
   },
   {
@@ -122,13 +125,14 @@ function AccordionSection({
         className="w-full flex items-center justify-between py-5 px-0 text-left group gap-3"
       >
         <div className="flex items-center gap-3 min-w-0">
-          <section.Icon className="flex-shrink-0" sx={{ fontSize: 32, color: section.color }} />
+          <section.Icon className="flex-shrink-0" size={40} weight="duotone" color={section.color} />
           <h2 className="text-2xl font-medium" style={{ color: section.color }}>
             {section.title}
           </h2>
         </div>
-        <ChevronDown
-          size={20}
+        <CaretDown
+          size={26}
+          weight="bold"
           className={cn(
             "text-ink-muted transition-transform duration-200 flex-shrink-0",
             isOpen && "rotate-180",
@@ -146,31 +150,32 @@ function AccordionSection({
 
           {section.hasPersonaPicker && (
             <div className="mt-8">
-              <p className="text-[11px] font-bold uppercase tracking-tight text-ink-muted mb-4">
-                Enter the flows
-              </p>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 {personas.map((p) => (
                   <Link
                     key={p.id}
                     href={p.href}
-                    className="group bg-surface border border-border rounded-2xl p-5 hover:shadow-md hover:border-ink/20 transition-all"
+                    className="group flex flex-col bg-surface rounded-[20px] p-5 ring-1 ring-border shadow-sm hover:shadow-lg hover:ring-ink/15 hover:-translate-y-0.5 transition-all duration-200"
                   >
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className="relative w-12 h-12 rounded-full overflow-hidden flex-shrink-0">
+                    <div className="flex items-center gap-3 mb-3.5">
+                      <div className="relative w-12 h-12 rounded-full overflow-hidden flex-shrink-0 ring-1 ring-border">
                         <Image src={p.photo} alt={p.name} fill unoptimized className="object-cover" sizes="48px" />
                       </div>
-                      <div>
-                        <p className="font-semibold text-sm text-ink">{p.name}</p>
-                        <p className="text-[11px] text-ink-muted">{p.role}</p>
+                      <div className="min-w-0">
+                        <p className="font-semibold text-sm text-ink leading-tight">{p.name}</p>
+                        <p className="text-[14px] text-ink-muted mt-0.5 leading-tight">{p.role}</p>
                       </div>
                     </div>
-                    <div className="flex items-center gap-2 mb-2">
-                      <span className={`inline-block w-2 h-2 rounded-full ${p.accent}`} />
-                      <p className="text-[11px] font-bold uppercase tracking-wider text-ink-muted">{p.flow}</p>
-                    </div>
-                    <p className="text-xs text-ink-muted leading-relaxed">{p.description}</p>
-                    <p className="mt-3 text-xs font-semibold text-employee-accent group-hover:underline">Enter →</p>
+                    <p className="text-[13px] leading-tight">
+                      <span className="inline-flex items-center gap-1.5 font-semibold text-ink text-[15px]">
+                        {p.flow}.
+                      </span>{" "}
+                      <span className="text-ink-muted mt-2 inline-block">{p.description}</span>
+                    </p>
+                    <p className="mt-auto pt-4 inline-flex items-center gap-1 text-xs font-semibold text-employee-accent">
+                      Enter the flow
+                      <span className="transition-transform duration-200 group-hover:translate-x-0.5"><ArrowRightIcon size={16} weight="bold" className="text-employee-accent" /></span>
+                    </p>
                   </Link>
                 ))}
               </div>
@@ -192,7 +197,10 @@ export default function LandingPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
-      <header className="relative" style={{ backgroundColor: "#E8F4EF" }}>
+      <header
+        className="relative border-b border-black/5"
+        style={{ background: "linear-gradient(180deg, #E8F4EF 0%, #F1F8F5 100%)" }}
+      >
         <div className="max-w-3xl mx-auto px-4 sm:px-8 pb-24 pt-12">
           <Image
             src="/liif.png"
@@ -200,18 +208,21 @@ export default function LandingPage() {
             width={742}
             height={529}
             priority
-            className="h-12 w-auto mb-12"
+            className="h-12 w-auto mb-14"
           />
-          <div className="flex items-end justify-between gap-4 flex-wrap">
-            <div>
-              <h1 className="text-4xl sm:text-5xl text-ink tracking-tight font-semibold leading-[1.05]">
+          <div className="flex items-end justify-between gap-6 flex-wrap">
+            <div className="max-w-2xl">
+              <p className="text-[13px] font-bold tracking-tight text-brand-teal mb-3">
+                Product Vision · Early Childhood Education
+              </p>
+              <h1 className="text-[40px] sm:text-[52px] text-ink tracking-tight font-semibold leading-[1.02] text-balance">
                 A Vision for a LIIF &ldquo;Grant Operating System&rdquo;
               </h1>
-              <p className="text-sm text-ink-muted mt-3 max-w-xl">
+              <p className="text-[15px] sm:text-base text-ink-muted mt-4 max-w-xl leading-relaxed">
                 An agent-enabled way to administer early-childhood-education facilities grants: get money to providers faster with stronger controls, and replace current costly software and services with a single, self-configuring platform.
               </p>
             </div>
-            <p className="text-sm text-ink-muted">Ben Clemens · June 2026</p>
+            <p className="text-[13px] font-medium text-ink-muted whitespace-nowrap">Ben Clemens · June 2026</p>
           </div>
         </div>
       </header>

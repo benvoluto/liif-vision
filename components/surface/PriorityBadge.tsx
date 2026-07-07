@@ -1,4 +1,4 @@
-import BoltOutlined from '@mui/icons-material/BoltOutlined'
+import { LightningIcon as Lightning } from '@phosphor-icons/react/dist/ssr'
 import { cn } from '@/lib/utils'
 import type { PriorityKind } from '@/lib/ontology/types'
 
@@ -28,7 +28,7 @@ export function PriorityBadge({ kind, label, className }: PriorityBadgeProps) {
       {kind === 'high' && (
         <span className="inline-block w-1.5 h-1.5 rounded-full bg-priority-high" />
       )}
-      {kind === 'storm' && <BoltOutlined sx={{ fontSize: 11 }} />}
+      {kind === 'storm' && <Lightning size={13} weight="fill" />}
       {label}
     </span>
   )

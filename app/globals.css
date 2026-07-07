@@ -1,29 +1,107 @@
 @import "tailwindcss";
 
-@theme {
-  /* Background & surface */
-  --color-bg: #FAFAF7;
-  --color-surface: #FFFFFF;
+/* ===================================================================
+   Design tokens — shadcn-compatible HSL variables (dark-ready).
 
-  /* Text */
-  --color-ink: #1A1A1A;
-  --color-ink-muted: #6B6B6B;
+   `:root` is fully tuned for the shipping light theme. `.dark` holds
+   the provided dark values so the system can be switched on later
+   without restructuring — no dark toggle or dark-specific component
+   work has been done yet.
 
-  /* Borders */
-  --color-border: #E6E4DE;
+   Three values deliberately deviate from the raw pasted palette, for
+   polish / accessibility (see inline notes): --background (faint cool
+   tint, not pure white), --muted-foreground (darkened for WCAG AA),
+   and --border (light hairline, not the pasted 62%-lightness slate).
+   =================================================================== */
+:root {
+  /* Ground & surfaces */
+  --background: 214 44% 98.5%;      /* polish: faint cool tint so white cards lift off the page */
+  --surface: 0 0% 100%;             /* cards / raised surfaces */
+  --foreground: 214.3 30.1% 30%;    /* body ink — cool slate */
+  --muted: 216 33% 94%;             /* subtle fills / hover grounds */
+  --muted-foreground: 214 20% 46%;  /* a11y: darkened from pasted 62% → passes AA at small sizes */
+  --border: 216 30% 89%;            /* polish: light hairline (pasted 62% was too heavy for this UI) */
+  --border-strong: 214 20% 80%;     /* dividers / inputs that need to read */
+  --input: 214 20% 82%;
+  --ring: 211 92% 46%;
+  --radius: 0.5rem;
 
-  /* Accents */
-  --color-employee-accent: #2E5BFF;
-  --color-manager-accent: #1F7A4C;
+  /* Primary / brand action */
+  --primary: 211 92% 44%;
+  --primary-foreground: 210 100% 98%;
 
-  /* Priority badges */
-  --color-priority-high: #E26A2C;
-  --color-priority-process: #2E5BFF;
-  --color-priority-opportunity: #1F9E8F;
-  --color-priority-storm: #D4A017;
+  /* Semantic accents — kept, retuned to sit on the cool ground */
+  --employee-accent: 211 92% 44%;   /* staff/action blue → aligned to primary azure */
+  --manager-accent: 152 58% 30%;    /* manager green */
+  --priority-high: 20 76% 52%;      /* orange — warm on cool ground, intentional */
+  --priority-process: 211 92% 44%;  /* process blue → primary */
+  --priority-opportunity: 173 67% 37%; /* teal — LIIF brand family */
+  --priority-storm: 42 80% 45%;     /* gold */
+  --audit: 214 22% 40%;             /* audit-trail slate */
+  --brand-teal: 179 80% 27%;        /* LIIF seal teal */
 
-  /* Audit trail */
-  --color-audit: #4A5568;
+  /* Inverted ink — tooltips, dark chips */
+  --ink-inverse: 214 32% 15%;
+}
+
+.dark {
+  --background: 338.2 10% 10%;
+  --surface: 338.2 10% 13%;
+  --foreground: 214.3 40.1% 68%;
+  --muted: 218.8 30% 18%;
+  --muted-foreground: 214.3 30% 58%;
+  --border: 214.3 24% 24%;
+  --border-strong: 214.3 24% 34%;
+  --input: 214.3 24% 30%;
+  --ring: 211 100% 57.1%;
+
+  --primary: 211 100% 57.1%;
+  --primary-foreground: 215.5 100% 10%;
+
+  --employee-accent: 211 100% 60%;
+  --manager-accent: 152 45% 52%;
+  --priority-high: 20 80% 60%;
+  --priority-process: 211 100% 60%;
+  --priority-opportunity: 173 55% 50%;
+  --priority-storm: 42 75% 58%;
+  --audit: 214 24% 62%;
+  --brand-teal: 176 55% 45%;
+
+  --ink-inverse: 214 32% 92%;
+}
+
+/* ===================================================================
+   Tailwind theme — map utilities (bg-bg, text-ink, border-border, …)
+   onto the HSL tokens above. `inline` keeps the reference at runtime
+   so a future `.dark` switch flows through every utility.
+   =================================================================== */
+@theme inline {
+  --color-bg: hsl(var(--background));
+  --color-surface: hsl(var(--surface));
+  --color-ink: hsl(var(--foreground));
+  --color-ink-muted: hsl(var(--muted-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-border: hsl(var(--border));
+  --color-border-strong: hsl(var(--border-strong));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+
+  --color-employee-accent: hsl(var(--employee-accent));
+  --color-manager-accent: hsl(var(--manager-accent));
+  --color-priority-high: hsl(var(--priority-high));
+  --color-priority-process: hsl(var(--priority-process));
+  --color-priority-opportunity: hsl(var(--priority-opportunity));
+  --color-priority-storm: hsl(var(--priority-storm));
+  --color-audit: hsl(var(--audit));
+  --color-brand-teal: hsl(var(--brand-teal));
+  --color-ink-inverse: hsl(var(--ink-inverse));
+
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 4px);
 
   /* Fonts — Helvetica Neue stack, medium default */
   --font-display: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
@@ -44,9 +122,27 @@ html, body {
 .font-bold { font-weight: 700 !important; }
 
 body {
-  background-color: #FAFAF7;
-  color: #1A1A1A;
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Text selection — tinted with the brand blue */
+::selection {
+  background-color: hsl(var(--primary) / 0.18);
+  color: hsl(var(--foreground));
+}
+
+/* Consistent, accessible keyboard focus across interactive elements.
+   `:where` keeps specificity at 0 so components can still override. */
+@layer base {
+  :where(a, button, [role="button"], input, textarea, select, summary, [tabindex]:not([tabindex="-1"])):focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
 }
 
 /* Hover-tip on highlighted phrases */
@@ -55,7 +151,7 @@ body {
   [data-tip] {
     position: relative;
     font-weight: 700;
-    border-bottom: 1px dotted rgba(26, 26, 26, 0.45);
+    border-bottom: 1px dotted hsl(var(--foreground) / 0.45);
     cursor: help;
     display: inline;
   }
@@ -67,7 +163,7 @@ body {
     top: calc(100% + 6px);
     width: max-content;
     max-width: 360px;
-    background: #1A1A1A;
+    background: hsl(var(--ink-inverse));
     color: #ffffff;
     padding: 10px 12px;
     border-radius: 8px;
@@ -80,7 +176,7 @@ body {
     transform: translateY(-2px);
     transition: opacity 140ms ease, transform 140ms ease;
     z-index: 50;
-    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.22);
+    box-shadow: 0 10px 28px hsl(var(--foreground) / 0.28);
   }
   span.tip:hover::after,
   span.tip:focus-visible::after,
@@ -92,7 +188,25 @@ body {
 }
 
 /* Scrollbar styling */
-::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar { width: 8px; height: 8px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: #E6E4DE; border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: #C8C5BC; }
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--border-strong));
+  border-radius: 4px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground));
+  background-clip: padding-box;
+}
+* { scrollbar-color: hsl(var(--border-strong)) transparent; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

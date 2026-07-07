@@ -10,7 +10,7 @@ export const mariaCards: BriefingCardDef[] = [
     context:
       'You\'re at step 2 of 6. I can verify your license, run the SAM.gov and OFAC checks, and pre-fill your $48,500 use-of-funds budget so it clears review on the first pass.',
     priority: 'process',
-    priorityLabel: 'IN PROGRESS · STEP 2 OF 6',
+    priorityLabel: 'In Progress · Step 2 of 6',
     ctaLabel: 'Continue',
     ctaHref: '/flows/grant-application',
     sources: [
@@ -39,7 +39,7 @@ export const mariaCards: BriefingCardDef[] = [
     context:
       'Your approved facilities grant has been waiting 78 days. It got stuck in routing — not anything you did. Your Program Officer and Finance have been notified and it\'s now first in line.',
     priority: 'high',
-    priorityLabel: 'DELAYED · ACTION ON LIIF',
+    priorityLabel: 'Delayed · Action On LIIF',
     ctaLabel: 'Track payment',
     sources: [
       { label: 'PR-CCFF-0461 ($48,500)', kind: 'PaymentRequest', id: 'pr-sunrise-ccff-0461' },
@@ -66,7 +66,7 @@ export const mariaCards: BriefingCardDef[] = [
     context:
       'A new Alameda County facilities program is opening. Based on your provider type and standing, your profile already meets the draft eligibility — most of your application could carry over.',
     priority: 'opportunity',
-    priorityLabel: 'OPPORTUNITY',
+    priorityLabel: 'Opportunity',
     ctaLabel: 'See eligibility',
     sources: [
       { label: 'Alameda County (new program)', kind: 'Program', id: 'program-alameda' },
@@ -93,7 +93,7 @@ export const mariaCards: BriefingCardDef[] = [
     context:
       'For your FY25 grant, the Use-of-Funds report (receipts + reconciliation) is due 11/30. I can pre-fill it from the receipts already on file and flag what\'s missing.',
     priority: 'storm',
-    priorityLabel: 'DEADLINE · NOV 30',
+    priorityLabel: 'Deadline · Nov 30',
     ctaLabel: 'Start report',
     sources: [
       { label: 'Use-of-Funds report', kind: 'Report', id: 'rep-sunrise-uof' },
@@ -151,7 +151,7 @@ export const tashaCards: BriefingCardDef[] = [
     context:
       'All six compliance items are verified. I\'ve assembled a compliance-complete package so Finance can rely on it and release, instead of re-checking documents you already vetted.',
     priority: 'high',
-    priorityLabel: 'READY TO HAND OFF',
+    priorityLabel: 'Ready To Hand Off',
     ctaLabel: 'Review & send to Finance',
     ctaHref: '/flows/payment-readiness',
     sources: [
@@ -180,7 +180,7 @@ export const tashaCards: BriefingCardDef[] = [
     context:
       'Median time-to-payment in your portfolio is 7.2 weeks, with no shared target. Most are stuck in routing or a duplicate review — not missing anything.',
     priority: 'process',
-    priorityLabel: 'IN PROCESS',
+    priorityLabel: 'In Process',
     ctaLabel: 'See queue',
     ctaHref: '/flows/payment-release',
     sources: [
@@ -208,7 +208,7 @@ export const tashaCards: BriefingCardDef[] = [
     context:
       'Three grantees are past the 6-month deadline; one hasn\'t responded past the reminder window. I can run the reminder cadence and draft a default notice for your review.',
     priority: 'storm',
-    priorityLabel: 'DEADLINE · ESCALATION DUE',
+    priorityLabel: 'Deadline · Escalation Due',
     ctaLabel: 'Review monitoring',
     ctaHref: '/flows/payment-readiness',
     sources: [
@@ -236,7 +236,7 @@ export const tashaCards: BriefingCardDef[] = [
     context:
       'A new Alameda RFP needs a program. Instead of rebuilding guidelines, Submittable steps, cost codes, and signing thresholds from scratch, I can compose them from the ontology.',
     priority: 'opportunity',
-    priorityLabel: 'OPPORTUNITY',
+    priorityLabel: 'Opportunity',
     ctaLabel: 'Open template',
     sources: [
       { label: 'Alameda County (new)', kind: 'Program', id: 'program-alameda' },
@@ -294,7 +294,7 @@ export const davidCards: BriefingCardDef[] = [
     context:
       'Eleven are releasable now with controls intact; three need a CFO co-signature. I\'ll preview every release, enforce segregation of duties, and write the audit trail.',
     priority: 'high',
-    priorityLabel: 'HIGH PRIORITY',
+    priorityLabel: 'High Priority',
     ctaLabel: 'Clear the queue',
     ctaHref: '/flows/payment-release',
     sources: [
@@ -323,7 +323,7 @@ export const davidCards: BriefingCardDef[] = [
     context:
       'Time-to-payment runs one to two months with no owner. A published target — fenced around your controls — would let us see where payments stall.',
     priority: 'process',
-    priorityLabel: 'IN PROCESS',
+    priorityLabel: 'In Process',
     ctaLabel: 'Define the SLO',
     sources: [
       { label: 'Disbursement metrics', kind: 'System', id: 'system-metrics' },
@@ -350,7 +350,7 @@ export const davidCards: BriefingCardDef[] = [
     context:
       '$30.5M of a $94.4M target is out the door across 233 grantees. Slow compliant disbursement — not demand — is the binding constraint on dollars reaching providers.',
     priority: 'storm',
-    priorityLabel: 'DEADLINE · FISCAL YEAR',
+    priorityLabel: 'Deadline · Fiscal Year',
     ctaLabel: 'See dashboard',
     sources: [
       { label: 'ECE deployment vs. target', kind: 'Program', id: 'program-ccff' },
@@ -377,7 +377,7 @@ export const davidCards: BriefingCardDef[] = [
     context:
       'Submittable, Salesforce, RightSignature, Payoneer, MIP, Concur, and Asana are stitched by manual re-keying. The ontology can absorb routing, records, and reconciliation.',
     priority: 'opportunity',
-    priorityLabel: 'OPPORTUNITY',
+    priorityLabel: 'Opportunity',
     ctaLabel: 'See consolidation plan',
     sources: [
       { label: 'Legacy tool stack', kind: 'System', id: 'system-submittable' },

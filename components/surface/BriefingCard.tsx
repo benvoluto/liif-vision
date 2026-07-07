@@ -1,26 +1,31 @@
 'use client'
 
-import { useState, type ComponentType } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
-import PriorityHighOutlined from '@mui/icons-material/PriorityHighOutlined'
-import PendingOutlined from '@mui/icons-material/PendingOutlined'
-import LightbulbOutlined from '@mui/icons-material/LightbulbOutlined'
-import BoltOutlined from '@mui/icons-material/BoltOutlined'
-import SubdirectoryArrowRightOutlined from '@mui/icons-material/SubdirectoryArrowRightOutlined'
-import type { SvgIconProps } from '@mui/material/SvgIcon'
+import {
+  WarningIcon as Warning,
+  DotsThreeCircleIcon as DotsThreeCircle,
+  LightbulbIcon as Lightbulb,
+  LightningIcon as Lightning,
+  ArrowElbowDownRightIcon as ArrowElbowDownRight,
+} from '@phosphor-icons/react/dist/ssr'
+import type { Icon as PhosphorIcon } from '@phosphor-icons/react'
 import { cn } from '@/lib/utils'
 import { ExplainDrawer } from '@/components/trust/ExplainDrawer'
 import type { BriefingCardDef, PriorityKind } from '@/lib/ontology/types'
 
 export type CardTint = 'blue' | 'green' | 'amber' | 'rose' | 'peach' | 'gray'
 
+// White card with a thick border in the tint's semantic color. The color
+// carries the same meaning the background tint used to: warm = delayed/deadline,
+// blue = in-progress, teal = opportunity, neutral = everything else.
 const tintStyles: Record<CardTint, string> = {
-  blue: 'bg-[#E8F0FB] border-[#CFDEF3]',
-  green: 'bg-[#E8F2EB] border-[#CFE1D5]',
-  amber: 'bg-[#FBF1DC] border-[#EEDFB8]',
-  rose: 'bg-[#FBE9E1] border-[#F2D3C2]',
-  peach: 'bg-[#FBE9E1] border-[#F2D3C2]',
-  gray: 'bg-[#F3F2EF] border-[#E4E2DC]',
+  blue: 'bg-surface border-[3px] border-priority-process/25',
+  green: 'bg-surface border-[3px] border-priority-opportunity/25',
+  amber: 'bg-surface border-[3px] border-priority-storm/25',
+  rose: 'bg-surface border-[3px] border-priority-high/25',
+  peach: 'bg-surface border-[3px] border-priority-high/25',
+  gray: 'bg-surface border-[3px] border-border-strong/25',
 }
 
 // Background tint by importance: delays/deadlines read warm (peach), in-progress
@@ -34,12 +39,12 @@ const priorityTint: Record<PriorityKind, CardTint> = {
 
 const priorityStyles: Record<
   PriorityKind,
-  { color: string; Icon: ComponentType<SvgIconProps> }
+  { color: string; Icon: PhosphorIcon }
 > = {
-  high: { color: 'text-priority-high', Icon: PriorityHighOutlined },
-  process: { color: 'text-priority-process', Icon: PendingOutlined },
-  opportunity: { color: 'text-priority-opportunity', Icon: LightbulbOutlined },
-  storm: { color: 'text-priority-storm', Icon: BoltOutlined },
+  high: { color: 'text-priority-high', Icon: Warning },
+  process: { color: 'text-priority-process', Icon: DotsThreeCircle },
+  opportunity: { color: 'text-priority-opportunity', Icon: Lightbulb },
+  storm: { color: 'text-priority-storm', Icon: Lightning },
 }
 
 type ActionAccent = 'blue' | 'green' | 'orange'
@@ -83,11 +88,11 @@ export function BriefingCard({
         {/* Priority badge */}
         <div
           className={cn(
-            'flex items-center gap-1.5 text-[10px] font-bold tracking-widest uppercase mb-3',
+            'flex items-center gap-2 text-[16px] tracking-tight font-bold mb-3',
             p.color,
           )}
         >
-          <p.Icon sx={{ fontSize: 14 }} />
+          <p.Icon size={22} weight="fill" />
           <span>{card.priorityLabel}</span>
         </div>
 
@@ -132,7 +137,7 @@ export function BriefingCard({
             ))}
             <span className="mx-2 opacity-60">·</span>
             <button className="inline-flex items-center gap-1 underline underline-offset-2 hover:text-ink transition-colors">
-              <SubdirectoryArrowRightOutlined sx={{ fontSize: 12 }} />
+              <ArrowElbowDownRight size={16} weight="bold" />
               Show sources
             </button>
           </p>

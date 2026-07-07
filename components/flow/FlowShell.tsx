@@ -4,7 +4,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowLeft, Check } from 'lucide-react'
+import { ArrowLeftIcon as ArrowLeft, ArrowLeftIcon, ArrowRightIcon, CheckIcon as Check } from '@phosphor-icons/react/dist/ssr'
 import { cn } from '@/lib/utils'
 import type { FlowStepDef } from '@/lib/flows/types'
 
@@ -77,7 +77,7 @@ export function FlowShell({ title, persona, backHref, tabs }: FlowShellProps) {
           href={backHref}
           className="flex items-center gap-1.5 text-sm text-ink-muted hover:text-ink transition-colors"
         >
-          <ArrowLeft size={16} />
+          <ArrowLeft size={18} weight="bold" />
           Back
         </Link>
         <div className="h-4 w-px bg-border" />
@@ -108,7 +108,7 @@ export function FlowShell({ title, persona, backHref, tabs }: FlowShellProps) {
                         'w-full text-left px-3 py-2.5 rounded-lg text-[13px] font-semibold transition-colors',
                         active
                           ? 'bg-ink text-surface'
-                          : 'text-ink-muted hover:bg-gray-100 hover:text-ink',
+                          : 'text-ink-muted hover:bg-muted hover:text-ink',
                       )}
                     >
                       {tab.label}
@@ -150,10 +150,10 @@ export function FlowShell({ title, persona, backHref, tabs }: FlowShellProps) {
                         ? 'bg-employee-accent text-surface'
                         : active
                         ? 'bg-ink text-surface ring-4 ring-ink/10'
-                        : 'bg-border text-ink-muted hover:bg-gray-300',
+                        : 'bg-border text-ink-muted hover:bg-border-strong',
                     )}
                   >
-                    {done ? <Check size={12} /> : i + 1}
+                    {done ? <Check size={14} weight="bold" /> : i + 1}
                   </button>
                   {/* Label */}
                   <p
@@ -193,25 +193,34 @@ export function FlowShell({ title, persona, backHref, tabs }: FlowShellProps) {
             {currentIndex > 0 && (
               <button
                 onClick={prev}
-                className="px-4 py-2 text-sm font-medium text-ink-muted border border-border rounded-lg hover:bg-gray-50 transition-colors"
+                className="px-4 py-2 text-sm font-medium text-ink-muted border border-border rounded-lg hover:bg-muted transition-colors whitespace-nowrap"
               >
-                ← Back
+                <ArrowLeftIcon size={16} weight="bold" className="text-ink-muted inline-block" /> Back
               </button>
             )}
-            {currentIndex < steps.length - 1 && (
+            {currentIndex < steps.length - 1 ? (
               <button
                 onClick={next}
-                className="px-4 py-2 text-sm font-semibold bg-ink text-surface rounded-lg hover:bg-ink/80 transition-colors"
+                className="px-4 py-2 text-sm font-semibold bg-ink whitespace-nowrap text-surface rounded-lg hover:bg-ink/80 transition-colors"
               >
-                Continue →
+                Continue <ArrowRightIcon size={16} weight="bold" className="text-surface inline-block" />
               </button>
+            ) : (
+              <Link
+                href={backHref}
+                className="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-semibold bg-employee-accent whitespace-nowrap text-surface rounded-lg hover:bg-employee-accent/90 transition-colors"
+              >
+                <Check size={16} weight="bold" className="text-surface" /> Finished
+              </Link>
             )}
-            <Link
-              href={backHref}
-              className="ml-auto px-4 py-2 text-sm font-medium text-ink-muted hover:text-ink transition-colors"
-            >
-              Cancel
-            </Link>
+            {currentIndex < steps.length - 1 && (
+              <Link
+                href={backHref}
+                className="ml-auto px-4 py-2 text-sm font-medium text-ink-muted hover:text-ink transition-colors"
+              >
+                Cancel
+              </Link>
+            )}
           </div>
         </div>
       </div>

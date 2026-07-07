@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
-import { ExternalLink } from 'lucide-react'
+import { ArrowSquareOutIcon as ArrowSquareOut } from '@phosphor-icons/react/dist/ssr'
 import type { CardSource } from '@/lib/ontology/types'
 
 interface SourcesPopoverProps {
@@ -38,7 +38,7 @@ export function SourcesPopover({ sources }: SourcesPopoverProps) {
           <ul className="space-y-1.5">
             {sources.map((s) => (
               <li key={s.id} className="flex items-start gap-2">
-                <ExternalLink size={10} className="mt-1 text-ink-muted flex-shrink-0" />
+                <ArrowSquareOut size={14} weight="bold" className="mt-0.5 text-ink-muted flex-shrink-0" />
                 <div>
                   <span className="text-[10px] font-bold text-ink-muted uppercase tracking-wide">
                     {s.kind}
